@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <footer>
+        <div class="final">
+            <div class="menuFooter">
+                <p>
+                    <a href="">¿Quienes somos?</a><br>
+                    <a href="">Ropa deportiva</a><br>
+                    <a href="">Bicicletas de montaña</a><br>
+                    <a href="">Balones deportivos</a><br>
+
+
+                    <% if(locals.isLogged) { %>
+                        <% if(locals.userLogged.categoryId==1) { %>
+                            <a href="/admin/users">Administrar Usuarios</a><br>
+                            <a href="/admin/products">Administrar Productos</a>
+                            <% } else if(locals.userLogged.categoryId==2) { %>
+                                <p>Bienvenido Usuario</p>
+                                <% } %>
+                                    <% } else { %>
+                                        <a href="/users/login">Loguearse</a><br>
+                                        <p>si aun no tienes cuenta:</p>
+                                        <a href="/create">Registrarse</a>
+                                        <% } %>
+
+                </p>
+            </div>
+            <div>
+                <p>
+                    <a href="">Facebook</a><br>
+                    <a href="">Instagram</a><br>
+                    <a href="">Youtube</a><br>
+                    <a href="">Twitter</a>
+                </p>
+            </div>
+            <div class="logoContainer">
+                <img src="/img/altisport-logo.png" alt="" class="logoimg">
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

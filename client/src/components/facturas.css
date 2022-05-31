@@ -1,0 +1,67 @@
+.contenedordefacturas{
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cardfactura{
+    background-color: #f2f2f2;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 7px;
+}
+
+.nombrecliente{
+    font-size: 20px;
+}
+
+.tablaProductos{
+    width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+
+}
+
+.tablaProductos thead td {
+    font-weight: 600;
+  
+  }
+
+  .tablaProductos  tr {
+    color: #161515;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  
+  }
+
+
+  .tablaProductos tr:last-child {
+    border-bottom: none;
+  }
+  
+  .tablaProductos tbody tr:hover {
+  
+    background: var(--gris);
+    color: var(--blanco);
+  
+  }
+  
+  .tablaProductos tr td {
+    padding: 10px;
+  }
+  
+  .tablaProductos tr td:last-child {
+    text-align: end;
+  }
+  
+  .tablaProductos tr td:nth-child(3) {
+    text-align: end;
+  }
+  
+  .tablaProductos tr td:nth-child(4) {
+    text-align: center;
+  }
+
+  .restaurar{
+      display: none;
+  }
