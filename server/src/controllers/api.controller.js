@@ -162,7 +162,7 @@ apiCtrl.crearProducto= async (req,res)=>{
     try{
     
         const { idproductos,cantidad, valorunitario,valorpedido} = req.body;
-        await Factura.create({
+        await Pedido.create({
             idproductos,
             cantidad,
             valorunitario,
@@ -178,6 +178,32 @@ apiCtrl.crearProducto= async (req,res)=>{
        
     
     }
+
+    
+   //------------------------------------------------------------
+
+      //----------------crear la relacion entre cliente y producto Pedido cliente_pedido ------------------------
+
+      apiCtrl.crearCliente_Pedido= async (req,res)=>{
+        try{
+        
+            const { idclientes,idpedidos, idfacturas,numerofactura} = req.body;
+            await Cliente_pedido.create({
+                idclientes,
+                idpedidos,
+                idfacturas,
+                numerofactura
+                
+            });
+            
+            return res.send("correcto");
+        }catch (error) {
+            return res.send(error);
+        }
+            
+           
+        
+        }
 
 
 module.exports = apiCtrl;

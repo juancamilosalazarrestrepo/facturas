@@ -59,7 +59,7 @@ class Facturas extends Component {
       }
     
       consumirApi()  {
-        this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
+       this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
         this.apiCall("http://localhost:3000/api/pedidocliente", this.mostrarClientesPedidos);
         this.apiCall("http://localhost:3000/api/",  this.mostrarClientes);
         this.apiCall("http://localhost:3000/api/facturas", this.mostrarFacturas);
@@ -134,15 +134,15 @@ class Facturas extends Component {
           
          
           console.log(factura)
-          listaproductos=  this.state.clientespedidos.filter(clientepedido => clientepedido.idclientes === factura.idclientes)
+          listaproductos =  this.state.clientespedidos.filter(clientepedido => clientepedido.idclientes === factura.idclientes);
           
            
-
+           
          
 
            productos=   listaproductos.map( (producto) =>  {
             
-             nombresdeproductos =  this.state.productos.filter(product => product.idproductos === producto.pedidos[0].idproductos);
+            nombresdeproductos =  this.state.productos.filter(product => product.idproductos === producto.pedidos[0].idproductos);
             console.log(nombresdeproductos);
 
             valorTotalfactura += (nombresdeproductos[0].precio *  producto.pedidos[0].cantidad)

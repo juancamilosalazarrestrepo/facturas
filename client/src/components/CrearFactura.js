@@ -29,14 +29,45 @@ class CrearFactura extends Component {
    precio: "" ,
    idproductos:"",     
    
-   cantidad:0
+   cantidad:0,
+
+   // inicializando estados de variables de datos de  pedidos
+
+   pedidos: [],
+   idproductosDePedido: 0,
+   cantidadDePedido: 0,
+   valorunitario: 0,
+   valorpedido:0,
 
 
+   //inicializando variables de esta para las facturas
+   facturas: [],
+   idclientesDeFactura: 0,
+   idpedidosDeFactura:0,
+  valortotalDeFactura:0,
+
+  idnuevafactura:0,
+  ultimoNumeroDeFactura:0,
+
+
+  // inicializando variables CLiente_pedido
+
+  clientespedidos:[],
+  idclientesCP: 0,
+  idpedidosCP: 0,
+  idfacturasCP: 0,
+  numerofacturaCP:0,
+
+  arraydepedidos:[],
+  arrayproductos:[],
+  arraycantidades:[],
+  arrayprecios:[]
 
     
-        };
+    };
         this.handleChange = this.handleChange.bind(this);
         this.crearfactura = this.crearfactura.bind(this);
+        this.agregarProducto = this.agregarProducto.bind(this);
       }
 
     
@@ -45,10 +76,12 @@ class CrearFactura extends Component {
         console.log("me monte");
         await this.consumirApi();
         
+        
+        
     
     
       }
-
+       
       
       async apiCall(url, consecuencia)  {
         await fetch(url)
@@ -57,15 +90,26 @@ class CrearFactura extends Component {
           .catch(error => console.log(error))
       }
 
-      consumirApi()  {
-        this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
-        /*this.apiCall("http://localhost:3000/api/pedidocliente", this.mostrarClientesPedidos); */
-        this.apiCall("http://localhost:3000/api/",  this.mostrarClientes);
-  /*       this.apiCall("http://localhost:3000/api/facturas", this.mostrarFacturas); */
+       consumirApi()  {
+        this.apiCall("http://localhost:3000/api/facturas", this.mostrarFacturas);
+         this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
+    
+        
+          this.apiCall("http://localhost:3000/api/",  this.mostrarClientes);
+          
         
          
         
       }
+
+      mostrarFacturas =  (data) => {
+        console.log("this is data"+data)
+        this.setState({
+          facturas: data,
+          idclientesDeFactura: data[0].idclientes,
+          idpedidosDeFactura: data[0].idpedidos,
+          valortotalDeFactura: data[0].valortotal,
+        })}
 
       mostrarClientes =   (data2) => {
         console.log("this is data"+data2)
@@ -91,7 +135,36 @@ class CrearFactura extends Component {
       
       
       
-          })}
+          })
+          this.ultimafactura();
+        }
+        
+
+          mostrarPedidos =  (data7) => {
+            console.log("this is data"+ data7)
+            this.setState({
+              pedidos: data7,
+              idproductosDePedido: data7[0].idproductos,
+              cantidadDePedido: data7[0].cantidad,
+              valorunitario: data7[0].valorunitario,
+              valorpedido:data7[0].valorpedido
+        
+        
+        
+            })}
+
+
+
+            mostrarClientesPedidos =  (data9) => {
+             
+              this.setState({
+                clientespedidos:data9,
+                idclientesCP: data9[0].idclientes,
+                idpedidosCP: data9[0].idpedidos,
+                idfacturasCP: data9[0].idfacturas,
+                numerofacturaCP:data9[0].numerofactura
+              })}
+
       
     
      
@@ -116,9 +189,9 @@ class CrearFactura extends Component {
                     const nuevafactura = {
                         
                         idclientes: parseInt(this.state.idclientes),
-                        idpedidos:this.state.idpedidos,
+                        
                         valortotal:this.state.valortotal,
-                        numerofactura:this.state.numerofactura,
+                        numerofactura:this.state.ultimoNumeroDeFactura + 1 ,
                     }
                     
             
@@ -138,31 +211,185 @@ class CrearFactura extends Component {
                   }
 
 
-                  agregarProducto(){
+               async agregarProducto(){
                     let productoAgregado;
-                    productoAgregado = this.state.productos.filter(producto => producto.idprodcutos == this.state.idproductos)
+                    productoAgregado = this.state.productos.filter(producto => producto.idproductos == this.state.idproductos)
+                    
+                    
                     const nuevoPedido = {
                         
                       
                       idproductos:parseInt(this.state.idproductos),
                       cantidad:this.state.cantidad,
-                      valorunitario:500,
-                      valorpedido:5000
+                      valorunitario:productoAgregado[0].precio,
+                      valorpedido:productoAgregado[0].precio*this.state.cantidad
+                      /* valorunitario:productoAgregado.precio,
+                      valorpedido:productoAgregado.precio * this.state.cantidad */
+                     
+                     }
+
+
+                     await fetch('http://localhost:3000/api/crearpedido',{
+                        method:'POST',
+                        body:JSON.stringify(nuevoPedido),
+                        headers:{
+                            "Content-type":'application/json'
+                        }
+                     })
+                     
+
+
+                     this.agregarRelacionClientePedido();
+
+                     
+
+
+                   }
+
+
+                        // obtener el utimo id de factura para generar una nueva
+
+
+                        ultimafactura(){
+                          let idultimafactura;
+                          let indexultimafactura;
+
+                          let ultimoNumeroDeFactura;
+                          
+     
+                          indexultimafactura= this.state.facturas.length;
+                          idultimafactura=  this.state.facturas[indexultimafactura-1].idfacturas;
+                          console.log("index ultimo factura" + idultimafactura)
+                          
+                          
+     
+                          this.setState({
+                            idnuevafactura: idultimafactura + 1,
+                            ultimoNumeroDeFactura: this.state.facturas[indexultimafactura-1].numerofactura 
+                          
+                          })
+
+
+                          
+                         
+     
+                        }
+
+
+                   // agregar relacion cliente pedido
+
+                   async agregarRelacionClientePedido(){  
+
+                     await this.apiCall("http://localhost:3000/api/pedidos",  this.mostrarPedidos);
+
+                    let indexultimopedido;
+                    let idultimopedido;
+
+                    
+
+                    indexultimopedido = this.state.pedidos.length;
+                    idultimopedido=this.state.pedidos[indexultimopedido-1].idpedidos;
+
+                     this.ultimafactura();
+
+
+                    console.log("este es el index" + idultimopedido )
+
+                    const nuevoClientePedido = {
+                        
+                      
+                      idclientes:parseInt(this.state.idclientes),
+                      idpedidos:idultimopedido,
+                      idfacturas:12,
+                      numerofactura:this.state.ultimoNumeroDeFactura + 1
                       /* valorunitario:productoAgregado.precio,
                       valorpedido:productoAgregado.precio * this.state.cantidad */
                      
                   }
 
 
-                     fetch('http://localhost:3000/api/crearpedido',{
+
+                    await fetch('http://localhost:3000/api/crearclientepedido',{
                         method:'POST',
-                        body:JSON.stringify(nuevoPedido),
+                        body:JSON.stringify(nuevoClientePedido),
                         headers:{
                             "Content-type":'application/json'
                         }
-                     }).then(res=>res.json())
-                     .then(data6 => console.log(JSON.parse(data6)))
-                        }
+                     })
+
+
+                     await this.apiCall("http://localhost:3000/api/pedidocliente", this.mostrarClientesPedidos);
+
+                     await this.productosDeLaFactura();
+
+
+                   
+
+
+                   }
+
+
+                   async productosDeLaFactura(){
+                    await this.apiCall("http://localhost:3000/api/pedidos",  this.mostrarPedidos)
+                   
+                     let pedidosFactura;
+                     let productosFactura;
+                     let arrayidpedidos=[];
+                     
+                     pedidosFactura = this.state.clientespedidos.filter(clientepedido => clientepedido.numerofactura === (this.state.ultimoNumeroDeFactura + 1));
+                     console.log("productos de la factura" + pedidosFactura[0].idpedidos);
+
+                     pedidosFactura.map((pedido)=>{
+                       arrayidpedidos.push(pedido.idpedidos)
+
+                     })
+
+                     await this.setState({
+                      arraydepedidos:arrayidpedidos
+                    
+                    })
+
+                    let nombresdeproductos=[];
+                    let cantidades=[];
+                    let precios=[];
+
+                    for (let i = 0; i < arrayidpedidos.length; i++) {
+                      let pedidoelegido;
+                      
+                      pedidoelegido=this.state.pedidos.filter(pedid=>pedid.idpedidos == arrayidpedidos[i]);
+
+
+                      nombresdeproductos.push(pedidoelegido[0].producto.nombreproducto)
+                      cantidades.push(pedidoelegido[0].cantidad)
+                      precios.push(pedidoelegido[0].producto.precio)
+                    }
+
+                    this.setState({
+                      arrayproductos:nombresdeproductos,
+                      arraycantidades:cantidades,
+                      arrayprecios:precios
+                    
+                    })
+                    
+                   
+
+                     console.log("productos de la facturassss"+nombresdeproductos)
+
+                     let  valortotal=0;
+                          for (let i = 0; i < this.state.arrayproductos.length; i++) {
+                            valortotal+= parseInt(this.state.arrayprecios[i])*parseInt(this.state.arraycantidades[i]);
+             
+                          }
+
+                          this.setState({
+                           valortotal:valortotal
+                          
+                          })
+
+                   }
+
+                
+
 
                   
                   
@@ -193,6 +420,45 @@ class CrearFactura extends Component {
                       });
 
 
+                      let productosenpedido=[];
+                      let valortotal=0;
+                      
+
+                      for (let i = 0; i < this.state.arrayproductos.length; i++) {
+                        valortotal+= parseInt(this.state.arrayprecios[i])*parseInt(this.state.arraycantidades[i]);
+                        productosenpedido.push(
+
+                        <tr  className="columnaProduct">
+                        <td >{this.state.arrayproductos[i]}</td>
+                        <td >{this.state.arraycantidades[i]}</td>
+                        <td >{this.state.arrayprecios[i]}</td>
+                        <td >{this.state.arrayprecios[i]*this.state.arraycantidades[i]}</td>
+                        
+                        <td ><button type="button" className="btn-eliminar"><ion-icon name="trash-outline"></ion-icon></button></td>
+                      </tr>);
+
+
+                        
+                      }
+
+
+                      
+
+                      let listadodeproductos;
+                      listadodeproductos= productosenpedido.map(productopedido => {
+                        return(
+                          productopedido
+                        )
+                      })
+
+                      
+                     
+                      
+
+                      
+                      
+
+
 
          
 
@@ -206,9 +472,9 @@ class CrearFactura extends Component {
              
                   
                  
+           <span>Numero de factura : {this.state.ultimoNumeroDeFactura + 1}</span> 
 
-
-                  <form onSubmit={this.crearfactura}>
+             <form onSubmit={this.crearfactura}>
                      
                      <label htmlFor="idclientes">cliente:</label>
         
@@ -225,24 +491,50 @@ class CrearFactura extends Component {
          <input type="number" id="cantidad" name="cantidad" value={this.state.cantidad}  onChange={this.handleChange} />
         
           
-         <button onClick={this.agregarProducto}>agregar producto</button> <br/><br/>
- 
+         
+
+       
+
+
+      
 
                      <label>valor total</label>
-                     <input type="number" id="valortotal" name="valortotal"  value={this.state.valortotal}  onChange={this.handleChange} />
+                     <input type="number" id="valortotal" name="valortotal" value={this.state.valortotal}  onChange={this.handleChange} />
+                     
+                    <span>{valortotal}</span>
         <br/> <br/> 
 
-        <label>numero factura</label>
-                     <input type="number" id="numerofactura" name="numerofactura"  value={this.state.numerofactura}  onChange={this.handleChange} />
-        <br/> <br/> 
-                     <input type="submit" value="Submit" />
+        
+                     <input type="submit" value="agregar factura" />
 
                   </form>
 
+                  <button onClick={this.agregarProducto}> Agragar producto</button>
+
+                  <span>lista de productos</span>
+
+                  <table>
+                <thead>
+                  <tr>
+                  <td>Nombre producto</td>
+                    <td>cantidad</td>
+                    <td>precio unitario</td>
+                    <td>precio total</td>
+                    <td>Eliminar</td>
+                  </tr>
+                </thead>
+                <tbody>
                   
+                {listadodeproductos}
+
+                </tbody>
+              </table>
 
                 
             </div>
+
+
+          
             
       
     )
