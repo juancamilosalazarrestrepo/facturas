@@ -1,5 +1,5 @@
 
-import './content.css';
+import './clientes.css';
 import { Component } from 'react';
 
 

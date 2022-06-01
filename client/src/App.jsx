@@ -105,7 +105,7 @@ class App extends Component {
           <TopBar />
           <Routes>
 
-            <Route path='/clientes' element={<Clientes />} />
+            <Route path='/clientes' element={<div className='contenedorClientes'><Clientes /></div>} />
             <Route path='/crearcliente/' element={<Crearcliente />} />
             <Route path='/productos/' element={<CrearProductos />} />
             <Route path='/facturas/' element={<Facturas />} />

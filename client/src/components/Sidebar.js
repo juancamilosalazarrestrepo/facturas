@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
-import './content.css';
+import './sidebar.css';
 import { Component } from 'react';
+
 
 
 
@@ -11,52 +12,61 @@ class Sidebar extends Component {
         return (
 
 
-<div className='navigation'>
+     <div className='navigation'>
           <ul>
-            <li className=''>
-              <a href="/">
-                <span className='icon'><img className="logoNavbar" src="http://localhost:3000/img/altisport-logo.png" alt="" /></span>
-                <span className="title altisport">Altisports</span>
+            <li >
+              <div className="logoSection">
+                <span className='icon'><img className="logoNavbar" src="http://localhost:3000/img/kenzalogo.png" alt="" /></span>
+                <span className="title benza">Benza Soft</span>
                 
-              </a>
+              </div>
+            </li>
+            
+            <li>
+              <div>
+                
+                <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/"><span className='icon'><ion-icon name="home-outline"></ion-icon></span>Panel Administrativo</NavLink></span>
+                
+              </div>
             </li>
             <li>
-              <a href="/">
-                <span className='icon'><ion-icon name="home-outline"></ion-icon></span>
-                <span className="title">Panel Administrativo</span>
-              </a>
+              <div>
+                
+                <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/clientes"><span className='icon'><ion-icon name="home-outline"></ion-icon></span>Clientes</NavLink></span>
+                
+              </div>
             </li>
+            
             <li>
-            <a>
-              <span className='icon'><ion-icon name="people-outline"></ion-icon></span>
-              <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/crearcliente">Crear Cliente</NavLink></span>
+            <div>
+              <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/crearcliente"><span className='icon'><ion-icon name="person-add"></ion-icon></span>Crear Cliente</NavLink></span>
               
-              </a>
+              </div>
               
             </li>
             <li>
-              <a href="/">
-                <span className='icon'><ion-icon name="bicycle-outline"></ion-icon></span>
-                <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/productos">Lista de Productos</NavLink></span>
-              </a>
+              <div>
+                <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/productos"><span className='icon'><ion-icon name="cube"></ion-icon></span>Lista de Productos</NavLink></span>
+              </div>
             </li>
             <li>
-              <a href="/">
-                <span className='icon'><ion-icon name="person-add-outline"></ion-icon></span>
-                <span className="title"> <NavLink className={({isActive})=>isActive ? 'active' : ""} to="/facturas">Facturas</NavLink></span>
-              </a>
+              <div>
+                
+                <span className="title"> <NavLink className={({isActive})=>isActive ? 'active' : ""} to="/facturas"><span className='icon'><ion-icon name="document"></ion-icon></span>Facturas</NavLink></span>
+              </div>
             </li>
             <li>
-              <a href="/">
-                <span className='icon'><ion-icon name="basketball-outline"></ion-icon></span>
-                <span className="title"> <NavLink className={({isActive})=>isActive ? 'active' : ""} to="/crearfactura">Crear Factura</NavLink></span>
-              </a>
+              <div>
+                
+                <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/crearfactura"><span className='icon'><ion-icon name="add"></ion-icon></span>Crear Factura</NavLink></span>
+              </div>
             </li>
             <li>
-              <a href="/">
-                <span className='icon'><ion-icon name="log-out-outline"></ion-icon></span>
-                <span className="title">Salir</span>
-              </a>
+              <div>
+                
+                <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/crearfactura"><span className='icon'><ion-icon name="log-out-outline"></ion-icon></span>Salir</NavLink></span>
+
+              </div>
             </li>
 
 

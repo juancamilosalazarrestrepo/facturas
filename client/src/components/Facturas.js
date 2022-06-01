@@ -59,7 +59,7 @@ class Facturas extends Component {
       }
     
       consumirApi()  {
-       this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
+        this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
         this.apiCall("http://localhost:3000/api/pedidocliente", this.mostrarClientesPedidos);
         this.apiCall("http://localhost:3000/api/",  this.mostrarClientes);
         this.apiCall("http://localhost:3000/api/facturas", this.mostrarFacturas);
@@ -123,89 +123,102 @@ class Facturas extends Component {
         let nombresdeproductos;
 
         let valorTotalfactura= 0;
-
-
-
-
-        
-        
-        
-        listaFacturas = this.state.facturas.map( (factura) => {
-          
+         let htmlfacturas=[];
+         let htmlfacturas2;
          
-          console.log(factura)
-          listaproductos =  this.state.clientespedidos.filter(clientepedido => clientepedido.idclientes === factura.idclientes);
+        for (let i = 0; i < this.state.facturas.length; i++) {
           
+          let listaclientepedido;
+          
+          listaclientepedido = this.state.clientespedidos.filter(clientepedido => clientepedido.numerofactura == this.state.facturas[i].numerofactura);
            
-           
-         
-
-           productos=   listaproductos.map( (producto) =>  {
+        
+          var listapedidos=[];
+          let htmlpedido=[]; 
+             
+          for (let j = 0; j < listaclientepedido.length; j++) {
+            let productopedido; 
             
-            nombresdeproductos =  this.state.productos.filter(product => product.idproductos === producto.pedidos[0].idproductos);
-            console.log(nombresdeproductos);
+            productopedido =this.state.productos.find(producto => producto.idproductos == listaclientepedido[j].pedidos[0].idproductos)
+            console.log(productopedido)
+             listapedidos.push( {
+              producto: productopedido.nombreproducto,
+              cantidad: listaclientepedido[j].pedidos[0].cantidad,
+              precio: productopedido.precio,
+              valorpedido: productopedido.precio *  listaclientepedido[j].pedidos[0].cantidad
+              
+            })
 
-            valorTotalfactura += (nombresdeproductos[0].precio *  producto.pedidos[0].cantidad)
-
-            return (
-
-          <tr  className="columnaProduct">
+            htmlpedido = listapedidos.map(pedido=>{
+              return(
+                <tr  className="columnaProduct">
 
 
       
-          <td >{nombresdeproductos[0].nombreproducto}</td>
-          <td >{nombresdeproductos[0].precio}</td>
-          <td> {producto.pedidos[0].cantidad}</td>
-          <td> { nombresdeproductos[0].precio *  producto.pedidos[0].cantidad}</td>
-          
-          
-          
-          <td ><button type="button" className="btn-editar"><ion-icon name="create-outline"></ion-icon></button></td>
-          <td ><button type="button" className="btn-eliminar"><ion-icon name="trash-outline"></ion-icon></button></td>
-        </tr>
-            
-            
-            )
-           })
-
-         
-            return (
-
-
-              <div className='cardfactura'>
-                <span className='nombrecliente'>cliente: {factura.cliente.nombre + " " + factura.cliente.apellido} </span>
+                <td >{pedido.producto + "2"}</td>
+                <td >{pedido.cantidad}</td>
+                <td> {pedido.precio}</td>
+                <td> {pedido.valorpedido}</td>
                 
-                <table className='tablaProductos'>
-                <thead>
-                  <tr>
-                    <td>Nombre Producto</td>
-                    <td>precio unitario</td>
-                    <td>cantidad</td>
-                    <td>valor</td>
-                    <td>Editar</td>
-                    <td>Eliminar</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                  {productos}
+                
+                
+                <td ><button type="button" className="btn-editar"><ion-icon name="create-outline"></ion-icon></button></td>
+                <td ><button type="button" className="btn-eliminar"><ion-icon name="trash-outline"></ion-icon></button></td>
+              </tr>
+              )
+            })
 
-                </tbody>
-              </table>
-              <span>Valor total {valorTotalfactura} </span>
-              
-              <span className='restaurar'> {valorTotalfactura = 0} </span>
-              </div>
-         
-         
-               
-              
-              
+            console.log(htmlpedido);
              
+          }
+
+
+
+
+
+          console.log(listapedidos);
+          
+          htmlfacturas.push(
+            <div className='cardfactura'>
+              <span className='nombrecliente'>cliente: {this.state.facturas[i].cliente.nombre} </span>
+              
+              <table className='tablaProductos'>
+              <thead>
+                <tr>
+                  <td>Nombre Producto</td>
+                  
+                  <td>cantidad</td>
+                  <td>valor</td>
+                  <td>precio unitario</td>
+                  <td>Editar</td>
+                  <td>Eliminar</td>
+                </tr>
+              </thead>
+              <tbody>
+                
+                {htmlpedido}
+
+              </tbody>
+            </table>
+            <span>Valor total </span>
+            
+            <span className='restaurar'> </span>
+            </div>
+       )
+          htmlfacturas2= htmlfacturas.map(html => {
+            return(
+              html
             )
+          })
+           
+          
+        }
+
+        
+        
+
+         
             
-            
-          });
     
     return (
 
@@ -215,7 +228,7 @@ class Facturas extends Component {
         <div className="contenedordefacturas">
              
                   
-                  {listaFacturas}
+                  {htmlfacturas2}
 
 
                   <form>

@@ -5,6 +5,7 @@
 }
 
 :root {
+  --colorprimario: #03264C;
   --yellow: #EAC926;
   --dark-blue: #03264C;
   --light-blue: #1259c3;
@@ -13,7 +14,7 @@
   --green: #39b54a;
   --gris: #222831;
   --blanco: #ffffff;
-  --naranja: #FD7014;
+  --naranja: #ebebeb;
   --negro: #000000;
   --base-font-family: 'Roboto', sans-serif
 }
@@ -27,8 +28,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   overflow-x: hidden;
-
-
 }
 
 code {
@@ -45,74 +44,21 @@ code {
 
 }
 
-.altisport {
-  color: var(--naranja);
-  font-weight: 700;
-  letter-spacing: 4px;
-  font-size: 20px;
-  margin-top: 20px;
-}
-
-.logoNavbar {
-  padding-top: 5px;
-  margin-left: -14px;
-  width: 90px;
-  height: 90px;
-}
-
-
-
-
-.navigation {
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background: var(--gris);
-  border-left: 10px solid var(--gris);
-  transition: 0.5s;
-  overflow: hidden;
-}
-
-.navigation.active {
-  width: 80px;
-}
-
-.navigation ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.navigation ul li {
-  position: relative;
-  width: 100%;
-  list-style: none;
-  align-items: center;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-
-}
-
-.navigation ul li:hover,
-.navigation ul li.hovered {
-  background: var(--blanco);
-
-}
-
-.navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
-  pointer-events: none;
-}
-
-.navigation ul li a {
-  position: relative;
-  display: block;
-  width: 100%;
+.contenedorClientes {
   display: flex;
-  text-decoration: none;
-  color: var(--blanco);
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  gap:20px
+  
+
 }
+
+
+
+
+
 
 /* .navigation ul li div {
   position: relative;
@@ -123,19 +69,7 @@ code {
   color: var(--blanco);
 } */
 
-.navigation ul li:hover a,
-.navigation ul li.hovered a {
-  color: var(--gris);
-}
 
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 70px;
-  text-align: center;
-}
 
 /* .navigation ul li div .icon {
   position: relative;
@@ -147,24 +81,13 @@ code {
 } */
 
 
-.navigation ul li a .icon ion-icon {
-  font-size: 1.75em;
-}
+
 
 /* .navigation ul li div .icon ion-icon {
   font-size: 1.75em;
 } */
 
-.navigation ul li a .title {
-  position: relative;
-  display: block;
-  padding: 0 10px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  white-space: nowrap;
 
-}
 
 
 /* .navigation ul li div .title {
@@ -245,26 +168,9 @@ code {
   transition: 0.5s;
 }
 
-.topbar {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-}
 
-.toggle {
-  position: relative;
-  top: 0;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5em;
-  cursor: pointer;
-}
+
+
 
 .search {
   position: relative;
@@ -273,45 +179,8 @@ code {
 
 }
 
-.search label {
-  position: relative;
-  width: 100%;
-}
 
-.search label input {
-  width: 100%;
-  height: 40px;
-  border-radius: 40px;
-  padding: 5px 20px;
-  padding-left: 35px;
-  outline: none;
-  border: 1px solid var(--gris);
-}
 
-.search label ion-icon {
-  position: absolute;
-  top: 0;
-  left: 10px;
-  font-size: 1.2em;
-}
-
-.user {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.user img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 .main.active {
   width: calc(100% - 80px);
@@ -344,7 +213,7 @@ code {
   position: relative;
   font-weight: 500;
   font-size: 2.5em;
-  color: var(--gris);
+  color: var(--colorprimario);
 }
 
 .cardBox .card .cardName {
@@ -359,7 +228,7 @@ code {
 }
 
 .cardBox .card:hover {
-  background: var(--gris);
+  background: var(--colorprimario);
 }
 
 .cardBox .card:hover .numbers,
@@ -379,16 +248,7 @@ code {
 
 }
 
-.contenedorFormLista {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 30px;
-  /* margin-top: 10px; */
 
-}
 
 
 .detailsLast {
@@ -430,18 +290,7 @@ code {
 
 }
 
-.contenedorFormLista .lista {
-  position: relative;
-  width: 100%;
-  display: grid;
-  min-height: 500px;
-  background: var(--blanco);
-  padding: 20px;
 
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-
-}
 
 .cardHeader {
   display: flex;
@@ -452,13 +301,13 @@ code {
 
 .cardHeader h2 {
   font-weight: 600;
-  color: var(--gris);
+  color: var(--colorprimario);
 }
 
 .btn {
   position: relative;
   padding: 5px 10px;
-  background: var(--gris);
+  background: var(--colorprimario);
   text-decoration: none;
   color: var(--blanco);
   border-radius: 6px;
@@ -524,7 +373,7 @@ code {
 
 .detailsLast .lastOrder table tbody tr:hover {
 
-  background: var(--gris);
+  background: var(--colorprimario);
   color: var(--blanco);
 
 }
@@ -561,7 +410,7 @@ code {
 
 .details .recentOrders table tbody tr:hover {
 
-  background: var(--gris);
+  background: var(--colorprimario);
   color: var(--blanco);
 
 }
@@ -695,7 +544,7 @@ code {
 }
 
 .lastCustomer table tr:hover {
-  background: var(--gris);
+  background: var(--colorprimario);
   color: var(--blanco);
 }
 
@@ -715,7 +564,7 @@ code {
 }
 
 .lastCustomer table tr:hover {
-  background: var(--gris);
+  background: var(--colorprimario);
   color: var(--blanco);
 }
 
@@ -725,7 +574,7 @@ code {
 
 
 .recentCustomers table tr:hover {
-  background: var(--gris);
+  background: var(--colorprimario);
   color: var(--blanco);
 }
 
@@ -745,7 +594,7 @@ code {
 }
 
 .recentCustomers table tr:hover {
-  background: var(--gris);
+  background: var(--colorprimario);
   color: var(--blanco);
 }
 

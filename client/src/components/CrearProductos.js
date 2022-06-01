@@ -75,8 +75,9 @@ class CrearProducto extends Component {
     return (
        
       <div className='contenedorFormLista'>
-        <div className="lista">
-        
+
+        <div className="contenedorFormUser">
+        <div className="formulario">
          <div className="cardHeader">
          
         <form onSubmit={this.crearproducto}>
@@ -94,9 +95,36 @@ class CrearProducto extends Component {
 
         
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Crear Producto" className="btnCrearCliente"  />
       </form>
          
+      </div>
+
+      </div>
+      <div className="formulario">
+      <div className="cardClienteNuevo">
+         <h2 className='tituloFormulario'>Producto Nuevo</h2><br/>
+        
+
+          <div className='usuarionuevo'>
+        
+
+            <div className='contenedorAvatar'><img className='avatar' src="http://www.ardiseny.es/wordpress/http://wp.ardiseny.es/wp-content/uploads/2015/04/icono-diseno-web-blog-difusion-producto.png" alt="" /></div>
+            
+           <div className='campos'><span className='titulocampo'>Nombre de producto: </span><span>{this.state.nombreproducto}</span></div>
+          <div className='campos'><span className='titulocampo'>Apellido: </span><span>{this.state.descripcion}</span></div>
+          <div className='campos'><span className='titulocampo'>Cedula: </span><span>{this.state.precio}</span></div>
+          
+          
+        
+          
+
+          </div>
+         
+          
+         
+      </div>
+      
       </div>
       </div>
       <Productos/>

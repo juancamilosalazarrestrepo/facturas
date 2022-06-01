@@ -1,0 +1,60 @@
+.lista{
+    position: relative;
+    width: 100%;
+    
+    
+    display: grid;
+    
+    background: var(--blanco);
+    padding: 30px 40px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+  
+  }
+
+  .lista table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  
+  }
+
+  .lista table thead td {
+    font-weight: 600;
+  
+  }
+
+  .lista table tr {
+     
+    color: #161515;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  
+  }
+
+  .lista table tr:last-child {
+    border-bottom: none;
+  }
+
+  .lista table tbody tr:hover {
+      
+
+    background: var(--colorprimario);
+    color: var(--blanco);
+  
+  }
+
+  .lista  table tr td {
+    padding: 10px;
+  }
+  
+  .lista  table tr td:last-child {
+    text-align: end;
+  }
+  
+  .lista  table tr td:nth-child(3) {
+    text-align: end;
+  }
+  
+  .lista  table tr td:nth-child(4) {
+    text-align: center;
+  }
