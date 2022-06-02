@@ -16,17 +16,18 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    
   
   }
 
   .lista table thead td {
     font-weight: 600;
-  
+    color: var(--colorprimario);
   }
 
   .lista table tr {
      
-    color: #161515;
+    color: var(--colorprimario);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   
   }

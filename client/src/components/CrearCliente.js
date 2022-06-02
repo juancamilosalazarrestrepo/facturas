@@ -21,9 +21,44 @@ class Crearcliente extends Component {
        
       }
 
+      apiCall(url, consecuencia) {
+        fetch(url)
+          .then(response => response.json())
+          .then(data => consecuencia(data))
+          .catch(error => console.log(error))
+      }
+
+      consumirApi() {
+        
+        this.apiCall("http://localhost:3000/api", this.mostrarClientes);
+    
+    
+      }
+    
+      mostrarClientes = (data) => {
+        
+        this.setState({
+          clientes: data,
+          nombre: data[0].nombre,
+          apellido: data[0].apellido,
+          cedula: data[0].cedula,
+          celular: data[0].celular
+    
+    
+    
+        })}
+
       componentDidMount() {
        
       }
+
+      componentDidUpdate(){
+        
+       
+     
+      }
+
+      
  
      
       reloadapi(){
@@ -43,7 +78,7 @@ class Crearcliente extends Component {
 
 
 
-      crearcliente(event) {
+     crearcliente(event) {
 
         
        
@@ -64,7 +99,12 @@ class Crearcliente extends Component {
          }).then(res=>res.json())
          .then(data => console.log(JSON.parse(data)))
 
+         
+         setTimeout(() => window.location.reload(true), 300);
+       
+
         event.preventDefault();
+      
       }
       
 

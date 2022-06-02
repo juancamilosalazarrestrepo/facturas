@@ -21,11 +21,7 @@ class App extends Component {
     super(props);
     this.state = {
 
-      /* nombre: "",
-
-
-      clientes: [], */
-
+     
 
 
     }
@@ -34,41 +30,7 @@ class App extends Component {
 
 
 
-  /* apiCall(url, consecuencia) {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => consecuencia(data))
-      .catch(error => console.log(error))
-  }
-
-
-  componentDidMount() {
-    console.log("me monte");
-    this.consumirApi();
-
-
-
-
-
-  }
-
-  consumirApi() {
-    this.apiCall("http://localhost:3000/api", this.mostrarGif);
-
-
-  }
-
-  mostrarGif = (data) => {
-
-    this.setState({
-      clientes: data,
-      nombre: data[0].nombre,
-
-
-
-    })}
- */
-
+ 
 
 
 

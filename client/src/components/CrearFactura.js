@@ -213,7 +213,7 @@ class CrearFactura extends Component {
                      .then(data5 => console.log(JSON.parse(data5)))
                      
                      
-                     
+                     setTimeout(() => window.location.reload(true), 300);
             
                     event.preventDefault();
                   }
@@ -484,7 +484,7 @@ class CrearFactura extends Component {
           <div className="cardformulariofactura">
              
                   
-                 
+          <h2 className='titulofomrfactura' >Crear Factura</h2> 
            <h2>Numero de factura : {this.state.ultimoNumeroDeFactura + 1}</h2> 
 
              <form onSubmit={this.crearfactura}>
@@ -505,7 +505,7 @@ class CrearFactura extends Component {
         
 
                      
-                    <span>Valor Total de la Factura : ${valortotal}</span>
+                    <h3 className='valortotal'>Valor Total de la Factura :<span> $ {valortotal}</span></h3> 
         <br/> <br/> 
 
         

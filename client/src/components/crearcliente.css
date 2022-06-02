@@ -58,6 +58,10 @@ input {
     height: 45px;
 }
 
+.btnCrearCliente:hover {
+    background-color: var(--light-blue);
+}
+
 
 .usuarionuevo {
     display: flex;

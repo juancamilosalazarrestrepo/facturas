@@ -218,8 +218,8 @@ class Facturas extends Component {
           htmlfacturas.push(
             <div className='cardfactura'>
               
-              <h3 className='nombrecliente'>Cliente: {this.state.facturas[i].cliente.nombre} </h3>
-              <h4 className='numerodefactura' >Numero de Factura: {this.state.facturas[i].numerofactura} </h4>
+              <h3 className='nombrecliente'>Cliente:  <span>{this.state.facturas[i].cliente.nombre + " " + this.state.facturas[i].cliente.apellido} </span> </h3>
+              <h4 className='numerodefactura' >Numero de Factura:  <span>{this.state.facturas[i].numerofactura}</span> </h4>
               
               <table className='tablaProductos'>
               <thead>
@@ -239,7 +239,7 @@ class Facturas extends Component {
 
               </tbody>
               
-            <h3 className='valortotal'>Valor total : ${this.state.facturas[i].valortotal}</h3>
+            <h3 className='valortotal'>Valor total : <span>${this.state.facturas[i].valortotal}</span></h3>
             </table>
             
 

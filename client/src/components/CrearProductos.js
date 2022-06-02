@@ -1,6 +1,8 @@
 import './content.css';
 import { Component } from 'react';
 import Productos from './Productos';
+import productoimg from '../img/producto.png';
+
 
 
 
@@ -55,7 +57,7 @@ class CrearProducto extends Component {
          }).then(res=>res.json())
          .then(data => console.log(JSON.parse(data)))
          
-
+         setTimeout(() => window.location.reload(true), 300);
         event.preventDefault();
       }
       
@@ -84,11 +86,11 @@ class CrearProducto extends Component {
 
         <h2 className='tituloFormulario'>Crear Producto</h2><br/>
         <label htmlFor="nombre">nombre del producto:</label><br/>
-          <input type="text" id="nombreproducto" name="nombreproducto"  value={this.state.nombreproducto}  onChange={this.handleChange} />
+          <input type="text" id="nombreproducto" name="nombreproducto"  value={this.state.nombreproducto}  onChange={this.handleChange} placeholder="Escribe el nombre del producto" />
         <br/> <br/> 
 
         <label htmlFor="Apellido">descripcion:</label><br/>
-        <input type="text" id="descripcion" name="descripcion" value={this.state.descripcion}  onChange={this.handleChange}  /><br/>   <br/> 
+        <input type="text" id="descripcion" name="descripcion" value={this.state.descripcion}  onChange={this.handleChange}  placeholder="Escriba la descripcion del producto"/><br/>   <br/> 
         
         <label htmlFor="cedula">Precio:</label><br/>
         <input type="number" id="precio" name="precio" value={this.state.precio}  onChange={this.handleChange} /><br/>   <br/> 
@@ -109,11 +111,11 @@ class CrearProducto extends Component {
           <div className='usuarionuevo'>
         
 
-            <div className='contenedorAvatar'><img className='avatar' src="http://www.ardiseny.es/wordpress/http://wp.ardiseny.es/wp-content/uploads/2015/04/icono-diseno-web-blog-difusion-producto.png" alt="" /></div>
+            <div className='contenedorAvatar'><img className='avatarproducto' src={productoimg} alt="" /></div>
             
            <div className='campos'><span className='titulocampo'>Nombre de producto: </span><span>{this.state.nombreproducto}</span></div>
-          <div className='campos'><span className='titulocampo'>Apellido: </span><span>{this.state.descripcion}</span></div>
-          <div className='campos'><span className='titulocampo'>Cedula: </span><span>{this.state.precio}</span></div>
+          <div className='campos'><span className='titulocampo'>Descripcion: </span><span>{this.state.descripcion}</span></div>
+          <div className='campos'><span className='titulocampo'>Precio: </span><span>{this.state.precio}</span></div>
           
           
         

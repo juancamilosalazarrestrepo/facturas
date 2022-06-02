@@ -44,6 +44,7 @@ input {
     border-radius: 14px;
 
     border: 1px solid var(--colorprimario);
+    
 
 }
 
@@ -86,14 +87,14 @@ input {
 
 
 .contenedorAvatar {
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: center;
 
 }
 
-.avatar {
-    width: 180px;
+.avatarproducto {
+    width: 20px;
     align-self: center;
     margin-bottom: 10px;
 }

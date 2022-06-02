@@ -15,23 +15,27 @@
 
 .nombrecliente {
   font-size: 20px;
+  color: var(--colorprimario);
 }
 
 .tablaProductos {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  
 
 }
 
 .tablaProductos thead td {
   font-weight: 600;
+  color: var(--colorprimario);
 
 }
 
 .tablaProductos tr {
   color: #161515;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--colorprimario);
 
 }
 
@@ -42,7 +46,7 @@
 
 .tablaProductos tbody tr:hover {
 
-  background: var(--gris);
+  background: var(--colorprimario);
   color: var(--blanco);
 
 }
@@ -71,7 +75,28 @@
   margin-left: 0px;
 }
 
+.nombrecliente span{
+  font-weight: 300;
+}
+
 .numerodefactura{
   margin-left: 87%;
   margin-top: -15px;
+  color: var(--colorprimario);
+}
+.numerodefactura span{
+ font-weight: 300;
+}
+
+.valortotal span{
+  font-weight: 300;
+}
+
+.valortotal{
+  margin-top: 10px;
+  color: var(--colorprimario);
+}
+
+.titulofomrfactura{
+  margin: auto;
 }

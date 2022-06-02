@@ -1,7 +1,7 @@
 
 import './topbar.css';
 import { Component } from 'react';
-import userFoto from '../img/user.jpg';
+import userFoto from '../img/user.png';
 
 class TopBar extends Component {
 
