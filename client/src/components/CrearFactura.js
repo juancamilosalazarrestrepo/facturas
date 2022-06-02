@@ -466,7 +466,7 @@ class CrearFactura extends Component {
               
              
                       return (
-                        <option value={cliente.idclientes}>{cliente.nombre}</option>
+                        <option value={cliente.idclientes}>{cliente.nombre + " " + cliente.apellido}</option>
                        
                       )
                     });
