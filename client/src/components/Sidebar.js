@@ -22,13 +22,7 @@ class Sidebar extends Component {
               </div>
             </li>
             
-            <li>
-              <div>
-                
-                <span className="title"><NavLink className={({isActive})=>isActive ? 'active' : ""} to="/"><span className='icon'><ion-icon name="home-outline"></ion-icon></span>Panel Administrativo</NavLink></span>
-                
-              </div>
-            </li>
+            
             <li>
               <div>
                 

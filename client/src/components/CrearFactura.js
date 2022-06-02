@@ -1,6 +1,6 @@
 import './crearfactura.css';
 import { Component } from 'react';
-import Clientes from './Clientes';
+
 
 
 
@@ -38,6 +38,7 @@ class CrearFactura extends Component {
    cantidadDePedido: 0,
    valorunitario: 0,
    valorpedido:0,
+   ultimopedidoid:0,
 
 
    //inicializando variables de esta para las facturas
@@ -92,9 +93,9 @@ class CrearFactura extends Component {
 
        consumirApi()  {
         this.apiCall("http://localhost:3000/api/facturas", this.mostrarFacturas);
+         this.apiCall("http://localhost:3000/api/pedidos", this.mostrarPedidos);
+         this.apiCall("http://localhost:3000/api/pedidocliente", this.mostrarClientesPedidos);
          this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
-    
-        
           this.apiCall("http://localhost:3000/api/",  this.mostrarClientes);
           
         
@@ -142,13 +143,15 @@ class CrearFactura extends Component {
 
           mostrarPedidos =  (data7) => {
             console.log("this is data"+ data7)
+            let idultimopedido;
+                  idultimopedido=this.state.pedidos[this.state.pedidos.length-1];
             this.setState({
               pedidos: data7,
               idproductosDePedido: data7[0].idproductos,
               cantidadDePedido: data7[0].cantidad,
               valorunitario: data7[0].valorunitario,
-              valorpedido:data7[0].valorpedido
-        
+              valorpedido:data7[0].valorpedido,
+              ultimopedidoid:idultimopedido
         
         
             })}
@@ -184,12 +187,16 @@ class CrearFactura extends Component {
 
                 crearfactura(event) {
 
+                  
+                  
+
+
                 
                   
                     const nuevafactura = {
                         
                         idclientes: parseInt(this.state.idclientes),
-                        idpedidos:2,
+                        idpedidos:this.state.ultimopedidoid,
                         valortotal:this.state.valortotal,
                         numerofactura:this.state.ultimoNumeroDeFactura + 1 ,
                     }
@@ -481,6 +488,7 @@ class CrearFactura extends Component {
 
                       for (let i = 0; i < this.state.arrayproductos.length; i++) {
                         valortotal+= parseInt(this.state.arrayprecios[i])*parseInt(this.state.arraycantidades[i]);
+                        
                         productosenpedido.push(
 
                         <tr  className="columnaProduct">
@@ -524,12 +532,14 @@ class CrearFactura extends Component {
 
      
       
-        
-        <div className="contenedordefacturas">
+        <div className='contenedordecrearfacturas'>
+        <div className="contenedordeformfacturas ">
+          <div className="formulario">
+          <div className="cardformulariofactura">
              
                   
                  
-           <span>Numero de factura : {this.state.ultimoNumeroDeFactura + 1}</span> 
+           <h2>Numero de factura : {this.state.ultimoNumeroDeFactura + 1}</h2> 
 
              <form onSubmit={this.crearfactura}>
                      
@@ -538,7 +548,7 @@ class CrearFactura extends Component {
 
         <select id="idclientes" name="idclientes" value={this.state.idclientes} onChange={this.handleChange} >
          {listaClientes}
-         </select><br/> <br/> 
+         </select>
           <label>productos</label>
                      <select id="idproductos" name="idproductos" value={this.state.idproductos} onChange={this.handleChange} >
          {listaProductos}
@@ -547,26 +557,20 @@ class CrearFactura extends Component {
          <label>cantidad</label>
          <input type="number" id="cantidad" name="cantidad" value={this.state.cantidad}  onChange={this.handleChange} />
         
-          
-         
 
-       
-
-
-      
-
-                     <label>valor total</label>
-                     <input type="number" id="valortotal" name="valortotal" value={this.state.valortotal}  onChange={this.handleChange} />
                      
-                    <span>{valortotal}</span>
+                    <span>Valor Total de la Factura : {valortotal}</span>
         <br/> <br/> 
 
         
-                     <input type="submit" value="agregar factura" />
+                     <input  type="submit" value="agregar factura"  className='btnCrearFactura'/>
 
                   </form>
+                  </div>
 
-                  <button onClick={this.agregarProducto}> Agragar producto</button>
+                  </div>
+
+                  <button onClick={this.agregarProducto} className="btnagregar"> Agragar producto</button>
 
                   <span>lista de productos</span>
 
@@ -587,7 +591,7 @@ class CrearFactura extends Component {
                 </tbody>
               </table>
 
-                
+              </div>
             </div>
 
 

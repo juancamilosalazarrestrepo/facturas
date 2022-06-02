@@ -33,7 +33,9 @@ class Facturas extends Component {
           productos: [],
           nombreproducto: "",
           descripcion: "",
-          precio: ""
+          precio: "",
+
+          valortotaldefactura:0
     
     
     
@@ -150,6 +152,10 @@ class Facturas extends Component {
             })
 
             htmlpedido = listapedidos.map(pedido=>{
+              var valortotal;
+              valortotal += pedido.valorpedido;
+
+              
               return(
                 <tr  className="columnaProduct">
 
@@ -180,7 +186,7 @@ class Facturas extends Component {
           
           htmlfacturas.push(
             <div className='cardfactura'>
-              <span className='nombrecliente'>cliente: {this.state.facturas[i].cliente.nombre} </span>
+              <h3 className='nombrecliente'>cliente: {this.state.facturas[i].cliente.nombre} </h3>
               
               <table className='tablaProductos'>
               <thead>
@@ -188,8 +194,8 @@ class Facturas extends Component {
                   <td>Nombre Producto</td>
                   
                   <td>cantidad</td>
-                  <td>valor</td>
-                  <td>precio unitario</td>
+                  <td>precio</td>
+                  <td>valor pedido</td>
                   <td>Editar</td>
                   <td>Eliminar</td>
                 </tr>
@@ -199,8 +205,11 @@ class Facturas extends Component {
                 {htmlpedido}
 
               </tbody>
+              
+            <h3 className='valortotal'>Valor total : {this.state.facturas[i].valortotal}</h3>
             </table>
-            <span>Valor total </span>
+            
+
             
             <span className='restaurar'> </span>
             </div>
@@ -231,16 +240,7 @@ class Facturas extends Component {
                   {htmlfacturas2}
 
 
-                  <form>
-                     <label>cliente</label>
-                     <input type="number" />
-                     <label>producto</label>
-                     <input type="number" />
-                     <label>cantidad</label>
-                     <input type="number" />
-                     <button>añadir producto</button>
-
-                  </form>
+                 
 
 
 

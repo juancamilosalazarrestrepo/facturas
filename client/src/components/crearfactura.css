@@ -1,0 +1,153 @@
+.contenedordecrearfacturas {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.contenedordeformfacturas {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    width: 60%;
+    padding: 20px;
+    gap: 20px
+}
+
+.formulario {
+    position: relative;
+
+
+
+
+
+    background: var(--blanco);
+    padding: 30px 40px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+
+
+}
+
+.formulario form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    width: 100% !important;
+    height: 40PX;
+    padding: 2px 10px;
+    border-radius: 14px;
+
+    border: 1px solid var(--colorprimario);
+
+}
+
+.btnCrearFactura {
+    background-color: var(--colorprimario);
+    border: none;
+    border-radius: 17px;
+    color: var(--blanco);
+    font-weight: 700;
+    width: 50%;
+    margin-top: 10px;
+    height: 45px;
+}
+
+.btnagregar {
+    background-color: var(--colorprimario);
+    border: none;
+    border-radius: 17px;
+    color: var(--blanco);
+    font-weight: 700;
+    width: 20%;
+    margin-top: -170px;
+    margin-left: 75%;
+    height: 45px;
+    z-index: 12;
+
+}
+
+.btnCrearFactura:hover {
+    background-color: #1259c3;
+
+}
+
+.btnagregar:hover {
+    background-color: #1259c3;
+
+
+}
+
+.cardformulariofactura {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    gap: 15px;
+
+}
+
+.cardformulariofactura h2 {
+    font-weight: 600;
+    color: var(--colorprimario);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 80px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+
+}
+
+table thead td {
+    font-weight: 600;
+
+}
+
+table tr {
+
+    color: #161515;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+table tr:last-child {
+    border-bottom: none;
+}
+
+table tbody tr:hover {
+
+
+    background: var(--colorprimario);
+    color: var(--blanco);
+
+}
+
+table tr td {
+    padding: 10px;
+}
+
+table tr td:last-child {
+    text-align: end;
+}
+
+table tr td:nth-child(3) {
+    text-align: end;
+}
+
+table tr td:nth-child(4) {
+    text-align: center;
+}
+
+.valortotal {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}

@@ -92,7 +92,7 @@ class Productos extends Component {
                 <thead>
                   <tr>
                     <td>Nombre del producto</td>
-                    <td>descripcion</td>
+                    <td>Descripcion</td>
                     <td>Precio</td>
                     <td>Editar</td>
                     <td>Eliminar</td>
