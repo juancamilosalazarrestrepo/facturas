@@ -7,7 +7,7 @@
 }
 
 .cardfactura {
-  background-color: #f2f2f2;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
   padding: 30px;
   margin: 20px;
   border-radius: 17px;
@@ -68,5 +68,10 @@
 }
 
 .nombrecliente {
-  margin-left: 20px;
+  margin-left: 0px;
+}
+
+.numerodefactura{
+  margin-left: 87%;
+  margin-top: -15px;
 }

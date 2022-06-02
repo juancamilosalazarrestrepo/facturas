@@ -194,8 +194,8 @@ class Facturas extends Component {
       
                 <td >{pedido.producto + "2"}</td>
                 <td >{pedido.cantidad}</td>
-                <td> {pedido.precio}</td>
-                <td> {pedido.valorpedido}</td>
+                <td> ${pedido.precio}</td>
+                <td> ${pedido.valorpedido}</td>
                 
                 
                 
@@ -217,15 +217,17 @@ class Facturas extends Component {
           
           htmlfacturas.push(
             <div className='cardfactura'>
-              <h3 className='nombrecliente'>cliente: {this.state.facturas[i].cliente.nombre} </h3>
+              
+              <h3 className='nombrecliente'>Cliente: {this.state.facturas[i].cliente.nombre} </h3>
+              <h4 className='numerodefactura' >Numero de Factura: {this.state.facturas[i].numerofactura} </h4>
               
               <table className='tablaProductos'>
               <thead>
                 <tr>
                   <td>Nombre Producto</td>
                   
-                  <td>cantidad</td>
-                  <td>precio</td>
+                  <td>Cantidad</td>
+                  <td>Precio</td>
                   <td>valor pedido</td>
                   <td>Editar</td>
                   <td>Eliminar</td>
@@ -237,7 +239,7 @@ class Facturas extends Component {
 
               </tbody>
               
-            <h3 className='valortotal'>Valor total : {this.state.facturas[i].valortotal}</h3>
+            <h3 className='valortotal'>Valor total : ${this.state.facturas[i].valortotal}</h3>
             </table>
             
 

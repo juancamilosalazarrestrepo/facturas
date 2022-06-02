@@ -213,7 +213,7 @@ class CrearFactura extends Component {
                      .then(data5 => console.log(JSON.parse(data5)))
                      
                      
-
+                     
             
                     event.preventDefault();
                   }
@@ -250,7 +250,7 @@ class CrearFactura extends Component {
                      this.agregarRelacionClientePedido();
 
                      
-
+                   
 
                    }
 
@@ -440,8 +440,8 @@ class CrearFactura extends Component {
                         <tr  className="columnaProduct">
                         <td >{this.state.arrayproductos[i]}</td>
                         <td >{this.state.arraycantidades[i]}</td>
-                        <td >{this.state.arrayprecios[i]}</td>
-                        <td >{this.state.arrayprecios[i]*this.state.arraycantidades[i]}</td>
+                        <td >${this.state.arrayprecios[i]}</td>
+                        <td >${this.state.arrayprecios[i]*this.state.arraycantidades[i]}</td>
                         
                         <td ><button type="button" className="btn-eliminar"><ion-icon name="trash-outline"></ion-icon></button></td>
                       </tr>);
@@ -505,7 +505,7 @@ class CrearFactura extends Component {
         
 
                      
-                    <span>Valor Total de la Factura : {valortotal}</span>
+                    <span>Valor Total de la Factura : ${valortotal}</span>
         <br/> <br/> 
 
         
