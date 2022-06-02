@@ -34,14 +34,11 @@ const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
 
-const mainRouter = require("./routes/mainRouter");
-const adminRouter = require("./routes/adminRouter");
+
 const usersRouter = require("./routes/usersRouter");
-const adminUserRouter = require('./routes/adminUsersRouter');
-const shopRouter = require("./routes/shopRouter");
-const productsRouter = require("./routes/products");
+
 const userLogMiddleware = require('./middlewares/userLogMiddleware');
-const adminMiddleware = require('./middlewares/adminMiddleware');
+
 const apiRoutes = require("./routes/api.routes");
 
 const publicPath = path.resolve(__dirname,'./public');
@@ -68,29 +65,20 @@ app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-//Sistema de ruteo
-/* const mainRouter = require("./routes/mainRouter");
-const adminRouter = require("./routes/adminRouter");
-const usersRouter = require("./routes/usersRouter");
-const shopRouter = require("./routes/shopRouter");
-const productsRouter = require("./routes/products"); */
+
 
 //RUTAS
-app.use('/',mainRouter);
-app.use('/admin',adminRouter);
-app.use('/shop',shopRouter);
+
 app.use('/users',usersRouter);
-app.use('/products',productsRouter);
+
 
 // ruta api
 app.use('/api', apiRoutes);
 
-app.use('/adminusers',adminUserRouter);
 
 
-let array= [1,2,3,4,5];
-var json = JSON.stringify(array);
-console.log(json);
+
+
 
 //Servidor
 app.listen(process.env.PORT || 3000, () =>console.log("Servidor Corriendo en Puerto 3000"));
