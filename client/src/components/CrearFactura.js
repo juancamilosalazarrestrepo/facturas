@@ -186,6 +186,7 @@ class CrearFactura extends Component {
                   }
 
                 crearfactura(event) {
+                  
 
                   
                   
@@ -196,7 +197,7 @@ class CrearFactura extends Component {
                     const nuevafactura = {
                         
                         idclientes: parseInt(this.state.idclientes),
-                        idpedidos:this.state.ultimopedidoid,
+                        idpedidos:0,
                         valortotal:this.state.valortotal,
                         numerofactura:this.state.ultimoNumeroDeFactura + 1 ,
                     }
@@ -211,62 +212,7 @@ class CrearFactura extends Component {
                      }).then(res=>res.json())
                      .then(data5 => console.log(JSON.parse(data5)))
                      
-                     this.setState({
-                      
-                      idclientes:"",
-                      idpedidos:0,
-                      valortotal:0,
-                      numerofactura:0,
-         
-           //inicializando datos de clientes
-                      nombre: "",
-                   apellido:"",
-                   cedula:"",
-                   telefono:"",
-                   clientes:[],
-         
-         
-            //inicializando datos para productos
-            productos: [],
-            nombreproducto: "",
-            descripcion: "",
-            precio: "" ,
-            idproductos:"",     
-            
-            cantidad:0,
-         
-            // inicializando estados de variables de datos de  pedidos
-         
-            pedidos: [],
-            idproductosDePedido: 0,
-            cantidadDePedido: 0,
-            valorunitario: 0,
-            valorpedido:0,
-         
-         
-            //inicializando variables de esta para las facturas
-            facturas: [],
-            idclientesDeFactura: 0,
-            idpedidosDeFactura:0,
-           valortotalDeFactura:0,
-         
-           idnuevafactura:0,
-           ultimoNumeroDeFactura:0,
-         
-         
-           // inicializando variables CLiente_pedido
-         
-           clientespedidos:[],
-           idclientesCP: 0,
-           idpedidosCP: 0,
-           idfacturasCP: 0,
-           numerofacturaCP:0,
-         
-           arraydepedidos:[],
-           arrayproductos:[],
-           arraycantidades:[],
-           arrayprecios:[]
-                    })
+                     
 
             
                     event.preventDefault();

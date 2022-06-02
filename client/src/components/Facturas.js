@@ -35,6 +35,14 @@ class Facturas extends Component {
           descripcion: "",
           precio: "",
 
+          pedidos: [],
+          idproductosDePedido: 0,
+          cantidadDePedido: 0,
+          valorunitario: 0,
+          valorpedido:0,
+          ultimopedidoid:0,
+       
+
           valortotaldefactura:0
     
     
@@ -62,6 +70,7 @@ class Facturas extends Component {
     
       consumirApi()  {
         this.apiCall("http://localhost:3000/api/productos", this.mostrarProductos);
+        this.apiCall("http://localhost:3000/api/pedidos", this.mostrarPedidos);
         this.apiCall("http://localhost:3000/api/pedidocliente", this.mostrarClientesPedidos);
         this.apiCall("http://localhost:3000/api/",  this.mostrarClientes);
         this.apiCall("http://localhost:3000/api/facturas", this.mostrarFacturas);
@@ -113,6 +122,21 @@ class Facturas extends Component {
             
             
                 })}
+
+                mostrarPedidos =  (data7) => {
+                  console.log("this is data"+ data7)
+                  let idultimopedido;
+                        idultimopedido=this.state.pedidos[this.state.pedidos.length-1];
+                  this.setState({
+                    pedidos: data7,
+                    idproductosDePedido: data7[0].idproductos,
+                    cantidadDePedido: data7[0].cantidad,
+                    valorunitario: data7[0].valorunitario,
+                    valorpedido:data7[0].valorpedido,
+                    ultimopedidoid:idultimopedido
+              
+              
+                  })}
     
 
                 render() {
@@ -139,15 +163,22 @@ class Facturas extends Component {
           let htmlpedido=[]; 
              
           for (let j = 0; j < listaclientepedido.length; j++) {
-            let productopedido; 
+            let productopedido;
+            let pedido; 
             
-            productopedido =this.state.productos.find(producto => producto.idproductos == listaclientepedido[j].pedidos[0].idproductos)
+            
+
+            console.log(listaclientepedido[j])
+            pedido=listaclientepedido[j].idpedidos
+            productopedido =this.state.pedidos.find(ped => ped.idpedidos == pedido);
+            console.log(productopedido)
+
             console.log(productopedido)
              listapedidos.push( {
-              producto: productopedido.nombreproducto,
-              cantidad: listaclientepedido[j].pedidos[0].cantidad,
-              precio: productopedido.precio,
-              valorpedido: productopedido.precio *  listaclientepedido[j].pedidos[0].cantidad
+              producto: productopedido.producto.nombreproducto,
+              cantidad: productopedido.cantidad,
+              precio: productopedido.valorunitario,
+              valorpedido: productopedido.valorpedido
               
             })
 
